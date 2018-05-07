@@ -19,3 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/post-message', 'ChatController@postMessage');
+
+Route::resource('timeline', 'TimelineController');
+
+Route::resource('publicar-contenido', 'PublicarContenidoController');

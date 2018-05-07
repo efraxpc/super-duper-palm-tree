@@ -20,7 +20,17 @@ Vue.use(VueSocketio, socketio(':8890'));
  */
 
 Vue.component('message', require('./components/MessageComponent.vue'));
+Vue.component('topo', require('./components/Topo.vue'));
+Vue.component('timeline', require('./components/Timeline.vue'));
+Vue.component('menu_principal', require('./components/Menu.vue'));
+Vue.component('publicar_contenido', require('./components/PublicarContenido.vue'));
+Vue.component('painel', require('./components/Painel.vue'));
+Vue.component('caixa', require('./components/Caixa.vue'));
+Vue.component('pagina', require('./components/Pagina.vue'));
 
 const app = new Vue({
     el: '#app'
+});
+const body_app = new Vue({
+    el: '#app_body'
 });
