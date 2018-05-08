@@ -7,118 +7,63 @@
             <div class="panel-body">
                 <div style="height: 400px; overflow-y : auto;">
                     <ul class="timeline timeline-update" style="height: 508px; overflow: hidden;">
-                        <li style="margin-top: -98.8797px;">
-                            <div class="timeline-badge primary wow lightSpeedIn center">
-                                <img src="img/authors/avatar1.jpg" height="36" width="36" class="img-circle pull-right" alt="avatar-image">
-                            </div>
-                            <div class="timeline-panel wow slideInLeft" style="display:inline-block;">
-                                <div class="timeline-heading">
-                                    <h4 class="timeline-title">Jade Project's Status </h4>
-                                    <p>
-                                        <small class="text-primary">11 hours ago</small>
-                                    </p>
-                                </div>
-                                <div class="timeline-body">
-                                    <p>
-                                        Jade Project team has completed their first phase.
-                                    </p>
-                                </div>
-                            </div>
-                        </li><li style="margin-top: 0px;">
-                        <div class="timeline-badge info wow lightSpeedIn center">
-                            <img src="img/authors/avatar.jpg" height="36" width="36" class="img-circle pull-right" alt="avatar-image">
-                        </div>
-                        <div class="timeline-panel wow slideInLeft">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Tinder Project</h4>
-                                <p>
-                                    <small class="text-primary">Sept 10, 2016</small>
-                                </p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>
-                                    Tinder Project's Final review has completed.
-                                </p>
-                            </div>
-                        </div>
-                    </li><li style="margin-top: 0px;">
-                        <div class="timeline-badge default wow lightSpeedIn center">
-                            <img src="img/authors/avatar2.jpg" height="36" width="36" class="img-circle pull-right" alt="avatar-image">
-                        </div>
-                        <div class="timeline-panel wow slideInLeft">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">A new branch in Virginia.</h4>
-                                <p>
-                                    <small class="text-primary">Jan 02, 2017</small>
-                                </p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>
-                                    Planning to have a branch in virginia in the coming year.
-                                </p>
-                            </div>
-                        </div>
-                    </li><li style="margin-top: 0px;">
-                        <div class="timeline-badge primary wow lightSpeedIn center">
-                            <img src="img/authors/avatar3.jpg" height="36" width="36" class="img-circle pull-right" alt="avatar-image">
 
-                        </div>
-                        <div class="timeline-panel wow slideInLeft" style="display:inline-block;">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Daily Status </h4>
-                                <p>
-                                    <small class="text-primary">2days ago</small>
-                                </p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>
-                                    Manager schedules to keep a daily project status track.
-                                </p>
-                            </div>
-                        </div>
-                    </li><li style="margin-top: 0px;">
-                        <div class="timeline-badge info wow lightSpeedIn center">
-                            <img src="img/authors/avatar4.jpg" height="36" width="36" class="img-circle pull-right" alt="avatar-image">
+                    </ul>
+                </div>
 
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Chat list</div>
+
+                    <div class="panel-body">
+                        <ul class="list-messages list-group"></ul>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="form-group">
+                            <input class="form-control" v-model="message" v-on:keyup.enter="postMessage" placeholder="Type message and press enter to send message" />
                         </div>
-                        <div class="timeline-panel wow slideInLeft">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Performance report</h4>
-                                <p>
-                                    <small class="text-primary">Aug 10, 2016</small>
-                                </p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>
-                                    Richard, updated his Team over view Performance report.
-                                </p>
-                            </div>
-                        </div>
-                    </li><li style="margin-top: 0px;">
-                        <div class="timeline-badge default wow lightSpeedIn center">
-                            <img src="img/authors/avatar2.jpg" height="36" width="36" class="img-circle pull-right" alt="avatar-image">
-                        </div>
-                        <div class="timeline-panel wow slideInLeft">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Project Evaluation</h4>
-                                <p>
-                                    <small class="text-primary">Oct 05, 2016</small>
-                                </p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>
-                                    Variations Project Evaluation is going on to highlight
-                                    project.
-                                </p>
-                            </div>
-                        </div>
-                    </li></ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-
 <script>
-
+    export default {
+        data(){
+            return {message: null};
+        },
+        sockets: {
+            message: function (val) {
+                var data = JSON.parse(val);
+                //var html = '<li class="list-group-item"><strong>'+data.user+'</strong> '+data.message+'</li>';
+                var html = '<li style="margin-top: 0px;"> ' +
+                    '<div class="timeline-badge info wow lightSpeedIn center"> ' +
+                    '<img src="img/authors/avatar.jpg" height="36" width="36" class="img-circle pull-right" alt="avatar-image"> </div>' +
+                    '<div class="timeline-panel wow slideInLeft"> ' +
+                    '<div class="timeline-heading"> ' +
+                    '<h4 class="timeline-title">'+data.user+'</h4> ' +
+                    '<p><small class="text-primary">Sept 10, 2016</small></p> ' +
+                    '</div> ' +
+                    '<div class="timeline-body"> ' +
+                    '<p>'+data.message+'</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+                $('.timeline').append(html);
+            }
+        },
+        methods: {
+            postMessage: function() {
+                if( this.message ){
+                    axios.post('./post-message', {message: this.message}).then(response => {this.chats = response.data}).catch(function (error) {
+                        console.log(error.response);
+                    });
+                    this.message = '';
+                }
+            }
+        }
+    }
 </script>

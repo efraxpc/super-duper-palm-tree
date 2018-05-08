@@ -6,7 +6,7 @@
                     <a class="pull-left profile-thumb" href="#">
                         <img :src="avatar" class="img-circle" alt="User Image"></a>
                     <div class="content-profile">
-                        <h4 class="media-heading">Addison</h4>
+                        <h4 class="media-heading">Juan</h4>
                         <ul class="icon-list">
                             <li>
                                 <a href="#">
